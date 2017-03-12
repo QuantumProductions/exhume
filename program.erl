@@ -2,5 +2,13 @@
 -export([main/1]).
 
 main(Args) ->
-    io:format("Args: ~p\n\n", [Args]).
+    format(Args).
+
+format(Args) ->
+  format(Args, 26).
+format(_Args, 0) -> io:format("\r\n");
+format(Args, N) -> 
+  io:format("        |                |                                                      "),
+  format(Args, N - 1).
+
 

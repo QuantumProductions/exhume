@@ -2,6 +2,7 @@
 #include<stdlib.h>
 
 int main(void){
+  system ("clear");
   int c;
   /* use system call to make terminal send all keystrokes directly to stdin */
   system ("/bin/stty raw");
@@ -9,7 +10,7 @@ int main(void){
     char command[100];
     sprintf(command, "erl -noshell -run program main %c -s erlang halt", c);
     system(command);
-    printf("\n");
+    printf("\r\n");
 
     /* type a period to break out of the loop, since CTRL-D won't work raw */
   }
