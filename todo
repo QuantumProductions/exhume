@@ -1,0 +1,4 @@
+send c/size with & height to server
+custom server directory
+server pads with spaces if > map size
+background + text color formatting for entities
