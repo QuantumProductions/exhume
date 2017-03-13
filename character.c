@@ -8,7 +8,7 @@ int main(void){
   system ("/bin/stty raw");
   while((c=getchar())!= '.') {
     char command[100];
-    sprintf(command, "erl -noshell -run program main %c -s erlang halt", c);
+    sprintf(command, "erl -noshell -run naive_tcp go -s erlang halt");
     system(command);
     printf("\r\n");
 
