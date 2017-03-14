@@ -1,4 +1,6 @@
 #!/bin/sh
 stty -f /dev/tty icanon raw
-erl -pa ./ -run naive_tcp go -run init stop -noshell
+erl -pa ./ -run thing start -run init -noshell
+clear
 stty echo echok icanon -raw
+echo "ok \n"
