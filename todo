@@ -1,4 +1,7 @@
+escape to close
 send c/size with & height to server
+default server url otherwise use specified flags
+download from token, if it doesn't exist then rm that token (chmod ONLY in this directory)
 custom server directory
 server pads with spaces if > map size
 background + text color formatting for entities
