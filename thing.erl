@@ -2,13 +2,14 @@
 -compile(export_all).
 
 eraseLine() -> 
-  Cols = os:cmd("tput cols"),
-  Val = parseRowCol(Cols),
-  eraseLine(Val).
-eraseLine(0) -> io:fwrite("\r\n");
-eraseLine(Columns) -> 
-  io:fwrite("X"),
-  eraseLine(Columns - 1).
+  io:fwrite("               ____________         ____ \x1B[K\r\n").
+%   Cols = os:cmd("tput cols"),
+%   Val = parseRowCol(Cols),
+%   eraseLine(Val).
+% eraseLine(0) -> io:fwrite("\x1B[K\r\n");
+% eraseLine(Columns) -> 
+%   io:fwrite(" "),
+%   eraseLine(Columns - 1).
 
 parseRowCol(L) -> parseRowCol(L, "").
 parseRowCol([H | T], NumberParts) ->
@@ -17,11 +18,20 @@ parseRowCol([H | T], NumberParts) ->
     false -> parseRowCol(T, lists:append(NumberParts, [H]))
   end.
 
+drawEmpty(0) -> ok;
+drawEmpty(N) -> 
+  io:fwrite("    \x1B[K\r\n"),
+  drawEmpty(N - 1).
+
 eraseScreen() ->
-  Rows = os:cmd("tput lines"),
-  Val = parseRowCol(Rows),
-  eraseScreen(Val).
+  io:fwrite("Hello\x1B[K\r\n"),
+  % io:fwrite("\033[2J"),
+  % Rows = os:cmd("tput lines"),
+  % Val = parseRowCol(Rows),
+  eraseScreen(22).
 eraseScreen(0) -> ok;
+eraseScreen(1) ->
+  io:fwrite("_____\x1B[K\r\n");
 eraseScreen(Rows) ->
   eraseLine(),
   eraseScreen(Rows - 1).
@@ -31,6 +41,7 @@ process(<<27>>) ->
   exit(self(), kill);
 process(Ch) ->
   os:cmd("clear"),
+  drawEmpty(40),
   eraseScreen(),
   get_char().
 
