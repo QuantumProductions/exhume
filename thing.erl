@@ -3,8 +3,9 @@
 
 eraseLine() -> 
   Cols = os:cmd("tput cols"),
-  eraseLine(parseRowCol(Cols)).
-eraseLine(0) -> ok;
+  Val = parseRowCol(Cols),
+  eraseLine(Val).
+eraseLine(0) -> io:fwrite("\r\n");
 eraseLine(Columns) -> 
   io:fwrite("X"),
   eraseLine(Columns - 1).
@@ -29,6 +30,7 @@ process(<<27>>) ->
   io:fwrite("Ch: ~w", [<<27>>]),
   exit(self(), kill);
 process(Ch) ->
+  os:cmd("clear"),
   eraseScreen(),
   get_char().
 
