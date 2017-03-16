@@ -13,14 +13,14 @@ drawData([], W, H, Output) ->
 drawData([H | T], W, Hi, Output) ->
   HPadding = W - length(H),
   % io:fwrite("Extra needed ~p", [HPadding]),
-  io:fwrite("Extra needed ~p", [H]),
+  % io:fwrite("Extra needed ~p", [H]),
   % io:fwrite("Extra needed ~p", [W]),
-  io:fwrite("Height: ~p", [Hi]),
+  % io:fwrite("Height: ~p", [Hi]),
   PaddedLine = paddedLine(H, HPadding),
   drawData(T, W, Hi - 1, Output ++ PaddedLine).
 
 render(W, H) ->
-  SampleData = ["_____________-------------_________","           XXX         "],
+  SampleData = ["EXHUMEXUMEXUME", "_____________-------------_________", "           XXX         "],
   drawData(SampleData, W, H).
   
 updateState(_) -> ok.
@@ -35,7 +35,7 @@ process(Ch, W, H) ->
   get_char(W, H).
 
 get_char(W, H) ->
-  Ch = io:get_chars("Hoodlum ", 1),
+  Ch = io:get_chars("", 1),
   process(Ch, W, H).
 
 main([H | [T]]) ->
