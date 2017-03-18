@@ -7,6 +7,6 @@ erlc program.erl
 make echo
 ./echo
 
-You will see data computed in Erlang printed into your terminal.
+You will see a * move right. Press a key to speed it up.
 
 git checkout curl-terminal to curl information from a server instead.
