@@ -13,7 +13,7 @@ int main(void){
     popen(output, "stty size");
     printf("Hello");
     printf("%s", output);
-    sprintf(command, "erl -noshell -s program main \"%s\" -s init halt", output);
+    sprintf(command, "erl -noshell -s controls go \"%s\" -s init halt", output);
     system(command);
   }
   system ("/bin/stty cooked");
