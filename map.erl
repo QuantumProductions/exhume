@@ -1,5 +1,9 @@
 -module(map).
 -compile(export_all).
+-include_lib("eunit/include/eunit.hrl").
+
+empty_map_test() ->
+  false = true.
 
 processInput([X], _) when X < 80 ->
   [X + 1];
