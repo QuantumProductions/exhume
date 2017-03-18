@@ -41,8 +41,7 @@ handle_call({tick, W, H}, _, State) ->
   {reply, prepareRender(State2, W, H), State2}.
 
 init([]) ->
-  [1].
+  {ok, [1]}.
 
 go() ->
-  {ok, Pid} = gen_server:start_link(?MODULE, [], []),
-  Pid.
+  gen_server:start_link(?MODULE, [], []).

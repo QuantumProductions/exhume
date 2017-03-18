@@ -14,7 +14,7 @@ int main(void){
     while (fgets(path, sizeof(path)-1, fp) != NULL) {
       printf("%s", path);
       char command[100];
-      sprintf(command, "erl -noshell -run program main %s -s init stop", path);
+      sprintf(command, "erl -noshell -run controls go %s -s init stop", path);
       system(command);
     }
     system("clear");
