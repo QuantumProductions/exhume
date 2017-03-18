@@ -19,7 +19,7 @@ prepareRender_test() ->
 processInput([X], _) when X < 80 ->
   [X + 1];
 processInput([_], _) ->
-  [0].
+  [1].
 
 processTick(State) -> processInput(State, none).
 

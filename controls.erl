@@ -14,9 +14,11 @@ get_char(MapPid, W, H) ->
   process(Ch, MapPid, W, H).
 
 handle_call(get_char, _, {MapPid, Width, Height}) ->
-  get_char(MapPid, Width, Height);
-handle_call(get_char, _, State) ->
-  {noreply, State}.
+  get_char(MapPid, Width, Height).
+
+handle_cast(get_char, {MapPid, Width, Height}) ->
+  get_char(MapPid, Width, Height),
+  {MapPid, Width, Height}.  
   
 update(MapPid, Width, Height) ->
   Map = s:s(MapPid, {tick, Width, Height}),
@@ -33,5 +35,5 @@ go([H | [T]]) ->
   Width = list_to_integer(T),
   Height = list_to_integer(H),
   {ok, Pid} = gen_server:start_link(?MODULE, {Width, Height}, []),
-  s:s(Pid, get_char).
+  gen_server:cast(Pid, get_char).
   
