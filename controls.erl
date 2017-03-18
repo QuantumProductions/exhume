@@ -21,7 +21,7 @@ handle_call(get_char, _, State) ->
 update(MapPid, Width, Height) ->
   Map = s:s(MapPid, {tick, Width, Height}),
   io:fwrite(Map),
-  timer:apply_after(1000, ?MODULE, update, [MapPid]).
+  timer:apply_after(1000, ?MODULE, update, [MapPid, Width, Height]).
 
 init({Width, Height}) -> 
   io:setopts([{binary, true}]),
