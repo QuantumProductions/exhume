@@ -3,7 +3,7 @@
 -include_lib("eunit/include/eunit.hrl").
 
 empty_map_test() ->
-  false = true.
+  [["   "], ["   "], ["   "]] = emptyMap(3, 3).
 
 processInput([X], _) when X < 80 ->
   [X + 1];
@@ -25,7 +25,7 @@ drawData([H | T], W, Hi, Output) ->
   PaddedLine = paddedLine(H, HPadding),
   drawData(T, W, Hi - 1, Output ++ [[PaddedLine]]).
 
-emptyMap(W, H) -> drawData([], W, H).
+emptyMap(W, H) -> drawData([], W, H, []).
 
 prepareRender([X], W, H) ->
   EmptyMap = emptyMap(W, H),
