@@ -3,7 +3,8 @@
 
 process(<<27>>, _, _, _) ->
   io:fwrite("Ch: ~w", [<<27>>]),
-  exit(self(), kill);
+  %exit(self(), kill);
+  halt();
 process(Ch, MapPid, W, H) ->
   Map = s:s(MapPid, {input, Ch, W, H}),
   io:fwrite(Map),
